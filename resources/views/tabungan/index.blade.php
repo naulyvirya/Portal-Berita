@@ -31,7 +31,9 @@
                                             <td>{{ $data->siswa->kelas }}</td>
                                             <td>{{ $data->jumlah_uang }}</td>
                                             <td>
-                                                Edit | Show | Delete
+                                                <a class="btn btn-info" href=" {{ route('tabungan.show', $data->id) }} ">Show</a>
+                                                <a class="btn btn-warning" href=" {{ route('tabungan.edit', $data->id) }} ">Edit</a>
+                                                <button type="submit" class="btn btn-danger" >Delete</button>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -8,13 +8,15 @@
                         Dashboard
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('tabungan.store') }}" method="post">
+                        <form action="{{ route('tabungan.update', $tabungan->id) }}" method="post">
                             @csrf
+                            @method('PUT')
                             <div class="form-group">
                                 <label for="">Pilih Nama Siswa</label>
                                 <select name="siswa_id" class="form-control">
-                                    @foreach ($data as $item)
-                                        <option value=" {{$item->id}} ">
+                                    @foreach ($siswa as $item)
+                                        <option value=" {{$item->id}} "
+                                            {{ $item->id == $tabungan->siswa_id ? 'selected' : '' }}>
                                             {{ $item->nama }} - {{ $item->kelas }}
                                         </option>
                                     @endforeach
@@ -22,7 +24,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Masukkan Jumlah Uang</label>
-                                <input type="number" name="jumlah_uang" class="form-control" required>
+                                <input type="number" name="jumlah_uang" value="{{ $tabungan->jumlah_uang }}" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary" type="submit">Simpan</button>

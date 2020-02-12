@@ -41,9 +41,10 @@ class TabunganController extends Controller
      * @param  \App\Tabungan  $tabungan
      * @return \Illuminate\Http\Response
      */
-    public function show(Tabungan $tabungan)
+    public function show($id)
     {
-        //
+        $tabungan = Tabungan::findOrFail($id);
+        return view('tabungan.show', compact('tabungan'));
     }
 
     /**
@@ -52,9 +53,11 @@ class TabunganController extends Controller
      * @param  \App\Tabungan  $tabungan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tabungan $tabungan)
+    public function edit($id)
     {
-        //
+        $siswa = Siswa::all();
+        $tabungan = Tabungan::findOrFail($id);
+        return view('tabungan.edit', compact('tabungan', 'siswa'));
     }
 
     /**
@@ -64,9 +67,13 @@ class TabunganController extends Controller
      * @param  \App\Tabungan  $tabungan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tabungan $tabungan)
+    public function update(Request $request, $id)
     {
-        //
+        $tabungan = Tabungan::findOrFail($id);
+        $tabungan->siswa_id = $request->siswa_id;
+        $tabungan->jumlah_uang = $request->jumlah_uang;
+        $tabungan->save();
+        return redirect()->route('tabungan.index');
     }
 
     /**
@@ -75,7 +82,7 @@ class TabunganController extends Controller
      * @param  \App\Tabungan  $tabungan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tabungan $tabungan)
+    public function destroy($id)
     {
         //
     }
