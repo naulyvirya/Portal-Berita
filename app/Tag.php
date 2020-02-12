@@ -11,7 +11,7 @@ class Tag extends Model
         // Model 'Tag' Memiliki Relasi Many to Many(belongsToMany)
         // terhadap Model 'Artikel' yang terhubung oleh table 'artikel_tag'
         // Masing2 sebagai 'artikel_id' dan 'tag_id'
-        return $this->belongToMany(
+        return $this->belongsToMany(
             'App\Artikel',
             'artikel_tag',
             'tag_id',
