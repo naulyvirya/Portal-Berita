@@ -81,6 +81,7 @@ Route::get('relasi-5', function(){
 
 // CRUD SISWA
 Route::resource('siswa', 'SiswaController');
+Route::get('tabungan/report', 'TabunganController@jumlah_tabungan');
 Route::resource('tabungan', 'TabunganController');
 
 Auth::routes();

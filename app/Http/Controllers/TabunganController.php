@@ -4,10 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Siswa;
 use App\Tabungan;
+use DB;
 use Illuminate\Http\Request;
 
 class TabunganController extends Controller
 {
+    public function jumlah_tabungan()
+    {
+        $tabungan = Tabungan::with('siswa')
+        ->select('siswa_id',
+                \DB::raw('sum(tabungans.jumlah_uang) as jumlah_uang'))
+        ->groupBy('siswa_id')
+        ->get();
+        // dd($tabungan);
+        return view('tabungan.report', compact('tabungan'));
+    }
+
     public function index()
     {
         $tabungan = Tabungan::with('siswa')->get();
@@ -84,6 +96,8 @@ class TabunganController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tabungan = Tabungan::findOrFail($id);
+        $tabungan->delete();
+        return redirect()->route('tabungan.index');
     }
 }

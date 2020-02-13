@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary" type="submit">Simpan</button>
-                                <button class="btn btn-warning" type="reset">Reset</button>
+                                <a class="btn btn-danger" href=" {{ route('tabungan.index') }} ">Back</a>
                             </div>
                         </form>
                     </div>
